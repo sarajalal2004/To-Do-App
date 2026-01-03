@@ -1,5 +1,6 @@
 package com.example.toDoApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,16 +9,15 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
+@AllArgsConstructor
+@Getter@Setter
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "Items")
+public class Item {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +29,13 @@ public class Category {
     @Column
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", orphanRemoval = true)
-    private List<Item> itemList;
+    @Column
+    private LocalDate dueDate;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @CreationTimestamp
     @Column
@@ -39,6 +44,4 @@ public class Category {
     @UpdateTimestamp
     @Column
     private LocalDateTime updatedAt;
-
-
 }
