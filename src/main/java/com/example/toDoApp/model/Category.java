@@ -1,5 +1,6 @@
 package com.example.toDoApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,11 @@ public class Category {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", orphanRemoval = true)
     private List<Item> itemList;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     @CreationTimestamp
     @Column
