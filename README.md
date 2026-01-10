@@ -1,8 +1,8 @@
-###What went right.
+### What went right. 
 The program running correctly as accpected, with secure accesses.
 
-###Challenges you faced.
+### Challenges you faced. 
 JWT setup was challenging
 
-###Which part you enjoyed working on the most.
+### Which part you enjoyed working on the most. 
 Services creation
